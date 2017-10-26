@@ -1,6 +1,6 @@
 package org.superbiz.moviefun.blobstore;
 
-import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
@@ -13,11 +13,11 @@ import java.util.Optional;
 
 public class S3Store implements BlobStore {
 
-    private final AmazonS3 s3;
+    private final AmazonS3Client s3;
     private final String bucketName;
     private final Tika tika = new Tika();
 
-    public S3Store(AmazonS3 s3, String bucketName) {
+    public S3Store(AmazonS3Client s3, String bucketName) {
         this.s3 = s3;
         this.bucketName = bucketName;
     }
