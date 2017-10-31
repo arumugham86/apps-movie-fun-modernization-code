@@ -1,23 +1,41 @@
 ---
 memory: 1G
 instances: 1
+
 services:
 - movie-fun-sso
 - movie-fun-registry
+
 env:
-  TRUST_CERTS: api.cfapps-01.haas-66.pez.pivotal.io,basic-sso.login.run-01.haas-66.pez.pivotal.io
+  TRUST_CERTS: apps.cumuluslabs.io,basic-sso.login.system.cumuluslabs.io
+  S3_ACCESSKEY: AKIAI7ZI6KD7DPV3BQWQ
+  S3_BUCKETNAME: cf-0bb29de2-0707-4e8f-ab43-6a67f909ffc2
+  S3_ENDPOINTURL: http://s3.amazonaws.com
+  S3_SECRETKEY: 44xDRC5uKajCPAPVsGCDt+5fxj8M//amf4EznAjq
+
 applications:
-- name: album-service
+
+- name: album-service-agr
+  routes:
+    - route: album-service-agr.apps.cumuluslabs.io
   path: applications/album-service/build/libs/album-service-1.1.0-SNAPSHOT.jar
   services:
   - album-database
   env:
     GRANT_TYPE: client_credentials
-- name: movie-service
+
+- name: movie-service-agr
+  routes:
+    - route: movie-service-agr.apps.cumuluslabs.io
   path: applications/movie-service/build/libs/movie-service-1.1.0-SNAPSHOT.jar
   services:
   - movie-database
   env:
     GRANT_TYPE: client_credentials
-- name: movie-fun-app
+
+- name: movie-fun-app-agr
+  routes:
+    - route: movie-fun-app-agr.apps.cumuluslabs.io
   path: applications/movie-fun-app/build/libs/movie-fun-app-1.1.0-SNAPSHOT.war
+  services:
+    - movie-fun-config
