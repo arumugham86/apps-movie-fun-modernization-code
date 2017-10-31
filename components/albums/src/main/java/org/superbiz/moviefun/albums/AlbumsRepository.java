@@ -34,7 +34,7 @@ public class AlbumsRepository {
         entityManager.persist(album);
     }
 
-    public Album find(long id) {
+    public Album find(Long id) {
         return entityManager.find(Album.class, id);
     }
 
