@@ -6,5 +6,6 @@ dependencies {
     compile "org.springframework:spring-web:$springVersion"
 
     compile "javax.servlet:javax.servlet-api:3.1.0"
+    compile "io.pivotal.spring.cloud:spring-cloud-services-starter-circuit-breaker:$springCloudServicesVersion"
     compile "org.slf4j:slf4j-api:$slf4jVersion"
 }
